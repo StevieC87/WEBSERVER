@@ -4,6 +4,9 @@ const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+//import apiRotes and ejsRoutes
+const apiRoutes = require("./routes/apiRoutes");
+//const ejsRoutes = require("./routes/ejsRoutes");
 
 app.prepare().then(() => {
   const server = express();
@@ -12,6 +15,16 @@ app.prepare().then(() => {
   // server.get('/custom-route', (req, res) => res.send('Hello World!'));
 
   // Next.js page routing:
+
+  // Define your API routes under /api
+  server.get("/hello", (req, res) => {
+    res.send("hello");
+  });
+  server.use("/api", apiRoutes);
+
+  // Define your EJS routes under /ejs
+  //server.use("/ejs", require("./ejsRoutes"));
+
   server.all("*", (req, res) => {
     return handle(req, res);
   });
