@@ -8,7 +8,7 @@ const About = () => {
       <Link href="/">
         <span>Home</span>
       </Link>
-      <div>HOMEPAGE</div>
+      <div></div>
     </div>
   );
 };

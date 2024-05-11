@@ -10,7 +10,12 @@ const apiRoutes = require("./routes/apiRoutes");
 
 app.prepare().then(() => {
   const server = express();
+  // To use nodeadmin correctly:
+  // It's crucial to pass the Express `server` instance to nodeadmin, not the Next.js `app`
+  // This ensures that nodeadmin middleware is applied to the Express server instance
+  server.use(require("nodeadmin")(server));
 
+  //; --------------------
   // Define custom Express routes here, e.g.:
   // server.get('/custom-route', (req, res) => res.send('Hello World!'));
 
